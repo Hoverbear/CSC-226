@@ -1,0 +1,204 @@
+eading input values from ewg_10vertices.txt.
+Reading graph 1
+Graph 1: Total weight is 347
+Reading graph 2
+Graph 2: Total weight is 356
+Reading graph 3
+Graph 3: Total weight is 272
+Reading graph 4
+Graph 4: Total weight is 354
+Reading graph 5
+Graph 5: Total weight is 268
+Reading graph 6
+Graph 6: Total weight is 161
+Reading graph 7
+Graph 7: Total weight is 192
+Reading graph 8
+Graph 8: Total weight is 366
+Reading graph 9
+Graph 9: Total weight is 242
+Reading graph 10
+Graph 10: Total weight is 357
+Reading graph 11
+Graph 11: Total weight is 253
+Reading graph 12
+Graph 12: Total weight is 311
+Reading graph 13
+Graph 13: Total weight is 354
+Reading graph 14
+Graph 14: Total weight is 241
+Reading graph 15
+Graph 15: Total weight is 225
+Reading graph 16
+Graph 16: Total weight is 219
+Reading graph 17
+Graph 17: Total weight is 341
+Reading graph 18
+Graph 18: Total weight is 258
+Reading graph 19
+Graph 19: Total weight is 339
+Reading graph 20
+Graph 20: Total weight is 183
+Reading graph 21
+Graph 21: Total weight is 196
+Reading graph 22
+Graph 22: Total weight is 425
+Reading graph 23
+Graph 23: Total weight is 380
+Reading graph 24
+Graph 24: Total weight is 183
+Reading graph 25
+Graph 25: Total weight is 279
+Reading graph 26
+Graph 26: Total weight is 273
+Reading graph 27
+Graph 27: Total weight is 391
+Reading graph 28
+Graph 28: Total weight is 370
+Reading graph 29
+Graph 29: Total weight is 287
+Reading graph 30
+Graph 30: Total weight is 290
+Reading graph 31
+Graph 31: Total weight is 249
+Reading graph 32
+Graph 32: Total weight is 409
+Reading graph 33
+Graph 33: Total weight is 379
+Reading graph 34
+Graph 34: Total weight is 352
+Reading graph 35
+Graph 35: Total weight is 325
+Reading graph 36
+Graph 36: Total weight is 198
+Reading graph 37
+Graph 37: Total weight is 273
+Reading graph 38
+Graph 38: Total weight is 278
+Reading graph 39
+Graph 39: Total weight is 344
+Reading graph 40
+Graph 40: Total weight is 247
+Reading graph 41
+Graph 41: Total weight is 279
+Reading graph 42
+Graph 42: Total weight is 261
+Reading graph 43
+Graph 43: Total weight is 300
+Reading graph 44
+Graph 44: Total weight is 262
+Reading graph 45
+Graph 45: Total weight is 279
+Reading graph 46
+Graph 46: Total weight is 271
+Reading graph 47
+Graph 47: Total weight is 271
+Reading graph 48
+Graph 48: Total weight is 302
+Reading graph 49
+Graph 49: Total weight is 249
+Reading graph 50
+Graph 50: Total weight is 237
+Reading graph 51
+Graph 51: Total weight is 235
+Reading graph 52
+Graph 52: Total weight is 265
+Reading graph 53
+Graph 53: Total weight is 324
+Reading graph 54
+Graph 54: Total weight is 310
+Reading graph 55
+Graph 55: Total weight is 346
+Reading graph 56
+Graph 56: Total weight is 321
+Reading graph 57
+Graph 57: Total weight is 305
+Reading graph 58
+Graph 58: Total weight is 184
+Reading graph 59
+Graph 59: Total weight is 274
+Reading graph 60
+Graph 60: Total weight is 400
+Reading graph 61
+Graph 61: Total weight is 428
+Reading graph 62
+Graph 62: Total weight is 276
+Reading graph 63
+Graph 63: Total weight is 267
+Reading graph 64
+Graph 64: Total weight is 307
+Reading graph 65
+Graph 65: Total weight is 340
+Reading graph 66
+Graph 66: Total weight is 201
+Reading graph 67
+Graph 67: Total weight is 346
+Reading graph 68
+Graph 68: Total weight is 338
+Reading graph 69
+Graph 69: Total weight is 347
+Reading graph 70
+Graph 70: Total weight is 251
+Reading graph 71
+Graph 71: Total weight is 192
+Reading graph 72
+Graph 72: Total weight is 467
+Reading graph 73
+Graph 73: Total weight is 251
+Reading graph 74
+Graph 74: Total weight is 503
+Reading graph 75
+Graph 75: Total weight is 271
+Reading graph 76
+Graph 76: Total weight is 216
+Reading graph 77
+Graph 77: Total weight is 283
+Reading graph 78
+Graph 78: Total weight is 197
+Reading graph 79
+Graph 79: Total weight is 401
+Reading graph 80
+Graph 80: Total weight is 279
+Reading graph 81
+Graph 81: Total weight is 307
+Reading graph 82
+Graph 82: Total weight is 254
+Reading graph 83
+Graph 83: Total weight is 300
+Reading graph 84
+Graph 84: Total weight is 246
+Reading graph 85
+Graph 85: Total weight is 373
+Reading graph 86
+Graph 86: Total weight is 276
+Reading graph 87
+Graph 87: Total weight is 154
+Reading graph 88
+Graph 88: Total weight is 214
+Reading graph 89
+Graph 89: Total weight is 264
+Reading graph 90
+Graph 90: Total weight is 272
+Reading graph 91
+Graph 91: Total weight is 249
+Reading graph 92
+Graph 92: Total weight is 301
+Reading graph 93
+Graph 93: Total weight is 349
+Reading graph 94
+Graph 94: Total weight is 304
+Reading graph 95
+Graph 95: Total weight is 282
+Reading graph 96
+Graph 96: Total weight is 175
+Reading graph 97
+Graph 97: Total weight is 261
+Reading graph 98
+Graph 98: Total weight is 323
+Reading graph 99
+Graph 99: Total weight is 454
+Reading graph 100
+Graph 100: Total weight is 283
+Processed 100 graphs.
+Average Time (seconds): 0.00
+

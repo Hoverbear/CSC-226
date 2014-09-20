@@ -1,0 +1,204 @@
+Reading input values from ewg_100vertices.txt.
+Reading graph 1
+Graph 1: Total weight is 136786
+Reading graph 2
+Graph 2: Total weight is 140211
+Reading graph 3
+Graph 3: Total weight is 146181
+Reading graph 4
+Graph 4: Total weight is 119897
+Reading graph 5
+Graph 5: Total weight is 136478
+Reading graph 6
+Graph 6: Total weight is 148660
+Reading graph 7
+Graph 7: Total weight is 131374
+Reading graph 8
+Graph 8: Total weight is 148970
+Reading graph 9
+Graph 9: Total weight is 157080
+Reading graph 10
+Graph 10: Total weight is 134932
+Reading graph 11
+Graph 11: Total weight is 143572
+Reading graph 12
+Graph 12: Total weight is 145531
+Reading graph 13
+Graph 13: Total weight is 146966
+Reading graph 14
+Graph 14: Total weight is 132057
+Reading graph 15
+Graph 15: Total weight is 139150
+Reading graph 16
+Graph 16: Total weight is 115421
+Reading graph 17
+Graph 17: Total weight is 151996
+Reading graph 18
+Graph 18: Total weight is 153824
+Reading graph 19
+Graph 19: Total weight is 118635
+Reading graph 20
+Graph 20: Total weight is 136449
+Reading graph 21
+Graph 21: Total weight is 130860
+Reading graph 22
+Graph 22: Total weight is 170521
+Reading graph 23
+Graph 23: Total weight is 173278
+Reading graph 24
+Graph 24: Total weight is 144692
+Reading graph 25
+Graph 25: Total weight is 163396
+Reading graph 26
+Graph 26: Total weight is 135491
+Reading graph 27
+Graph 27: Total weight is 145275
+Reading graph 28
+Graph 28: Total weight is 116145
+Reading graph 29
+Graph 29: Total weight is 149935
+Reading graph 30
+Graph 30: Total weight is 122891
+Reading graph 31
+Graph 31: Total weight is 154254
+Reading graph 32
+Graph 32: Total weight is 146060
+Reading graph 33
+Graph 33: Total weight is 160077
+Reading graph 34
+Graph 34: Total weight is 173848
+Reading graph 35
+Graph 35: Total weight is 153643
+Reading graph 36
+Graph 36: Total weight is 138875
+Reading graph 37
+Graph 37: Total weight is 131190
+Reading graph 38
+Graph 38: Total weight is 156828
+Reading graph 39
+Graph 39: Total weight is 179755
+Reading graph 40
+Graph 40: Total weight is 139496
+Reading graph 41
+Graph 41: Total weight is 140154
+Reading graph 42
+Graph 42: Total weight is 171621
+Reading graph 43
+Graph 43: Total weight is 132404
+Reading graph 44
+Graph 44: Total weight is 153122
+Reading graph 45
+Graph 45: Total weight is 165905
+Reading graph 46
+Graph 46: Total weight is 132574
+Reading graph 47
+Graph 47: Total weight is 132308
+Reading graph 48
+Graph 48: Total weight is 135049
+Reading graph 49
+Graph 49: Total weight is 138298
+Reading graph 50
+Graph 50: Total weight is 148128
+Reading graph 51
+Graph 51: Total weight is 112228
+Reading graph 52
+Graph 52: Total weight is 163506
+Reading graph 53
+Graph 53: Total weight is 138786
+Reading graph 54
+Graph 54: Total weight is 132926
+Reading graph 55
+Graph 55: Total weight is 110838
+Reading graph 56
+Graph 56: Total weight is 167445
+Reading graph 57
+Graph 57: Total weight is 141355
+Reading graph 58
+Graph 58: Total weight is 153118
+Reading graph 59
+Graph 59: Total weight is 129122
+Reading graph 60
+Graph 60: Total weight is 141325
+Reading graph 61
+Graph 61: Total weight is 119907
+Reading graph 62
+Graph 62: Total weight is 135207
+Reading graph 63
+Graph 63: Total weight is 154831
+Reading graph 64
+Graph 64: Total weight is 146459
+Reading graph 65
+Graph 65: Total weight is 135006
+Reading graph 66
+Graph 66: Total weight is 155574
+Reading graph 67
+Graph 67: Total weight is 159292
+Reading graph 68
+Graph 68: Total weight is 182866
+Reading graph 69
+Graph 69: Total weight is 181037
+Reading graph 70
+Graph 70: Total weight is 133181
+Reading graph 71
+Graph 71: Total weight is 126642
+Reading graph 72
+Graph 72: Total weight is 156321
+Reading graph 73
+Graph 73: Total weight is 129871
+Reading graph 74
+Graph 74: Total weight is 153478
+Reading graph 75
+Graph 75: Total weight is 162302
+Reading graph 76
+Graph 76: Total weight is 109425
+Reading graph 77
+Graph 77: Total weight is 137378
+Reading graph 78
+Graph 78: Total weight is 125686
+Reading graph 79
+Graph 79: Total weight is 124576
+Reading graph 80
+Graph 80: Total weight is 135042
+Reading graph 81
+Graph 81: Total weight is 129046
+Reading graph 82
+Graph 82: Total weight is 135743
+Reading graph 83
+Graph 83: Total weight is 144765
+Reading graph 84
+Graph 84: Total weight is 169038
+Reading graph 85
+Graph 85: Total weight is 126103
+Reading graph 86
+Graph 86: Total weight is 127039
+Reading graph 87
+Graph 87: Total weight is 133445
+Reading graph 88
+Graph 88: Total weight is 126989
+Reading graph 89
+Graph 89: Total weight is 141658
+Reading graph 90
+Graph 90: Total weight is 133616
+Reading graph 91
+Graph 91: Total weight is 132289
+Reading graph 92
+Graph 92: Total weight is 149833
+Reading graph 93
+Graph 93: Total weight is 123774
+Reading graph 94
+Graph 94: Total weight is 146403
+Reading graph 95
+Graph 95: Total weight is 138377
+Reading graph 96
+Graph 96: Total weight is 129679
+Reading graph 97
+Graph 97: Total weight is 150272
+Reading graph 98
+Graph 98: Total weight is 137962
+Reading graph 99
+Graph 99: Total weight is 130530
+Reading graph 100
+Graph 100: Total weight is 149911
+Processed 100 graphs.
+Average Time (seconds): 0.00
+
