@@ -95,7 +95,7 @@ class UnionFind{
     if (current.parent == current) {
       return current;
     } else {
-      return current.parent.find();
+      return current.parent.find(current); 
     }
   }
   
@@ -125,6 +125,13 @@ class UnionFind{
     // Attach the smaller to the larger.
     // TODO: Rank addition.
     smaller.parent = bigger;
+    if (smaller.rank > bigger.rank) {
+      bigger.rank = smaller.rank + 1;
+    } else if (smaller.rank == bigger.rank) {
+      bigger.rank += 1;
+    } else {
+      // Smaller, do nothing.
+    }
     return bigger;
   }
 }
