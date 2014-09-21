@@ -251,6 +251,6 @@ public class MWST{
       System.out.printf("Graph %d: Total weight is %d\n",graphNum,totalWeight);
     }
     graphNum--;
-    System.out.printf("Processed %d graph%s.\nAverage Time (seconds): %.2f\n",graphNum,(graphNum != 1)?"s":"",(graphNum>0)?totalTimeSeconds/graphNum:0);
+    System.out.printf("Processed %d graph%s.\nAverage Time (seconds): %.8f\n",graphNum,(graphNum != 1)?"s":"",(graphNum>0)?totalTimeSeconds/graphNum:0);
   }
 }
