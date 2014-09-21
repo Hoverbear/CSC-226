@@ -56,7 +56,7 @@ class Edge implements Comparable<Edge> {
       return false;
     }
   }
-  
+
   public int compareTo(Edge e) {
     return Integer.compare(this.weight, e.weight);
   }
@@ -66,19 +66,10 @@ class Node {
   public int val;
   public ArrayList<Edge> edges;
   public UnionFind uf;
-  
+
   public Node(int x) {
     val = x;
     edges = new ArrayList<Edge>();
-  }
-
-  public Node[] adj() {
-    // Java sucks, and doesn't have an `array.map` so we have to loop.
-    Node[] adj_nodes = new Node[this.edges.size()];
-    for (int i=0; i>this.edges.size(); i++) {
-      adj_nodes[i] = this.edges.get(i).w;
-    }
-    return adj_nodes;
   }
 }
 
@@ -90,8 +81,8 @@ class UnionFind{
 
   public UnionFind(Node x) {
     parent = this; // In Rust this should be an enum of {Self, Parent(x)}
-  key = x;
-  rank = 0;
+    key = x;
+    rank = 0;
   }
 
   // Java sucks, so we need to declare this as a static method to use it like `UnionFind.make_set(x)`
@@ -105,6 +96,16 @@ class UnionFind{
       return current;
     } else {
       return current.parent.find();
+    }
+  }
+  
+  public UnionFind find(UnionFind last) { // `this` is the implict first arguement, because Java sucks and we can't represent that.
+    UnionFind current = this;
+    last.parent = current.parent;
+    if (current.parent == current) {
+      return current;
+    } else {
+      return current.parent.find(current);
     }
   }
 
