@@ -1,0 +1,7 @@
+Input: A sequence S of length N, a partition size P.
+Partition the sequence into chunks of size P. O(N)
+Initialize an empty array M.
+For each chunk C of S: O(N/P)
+  Sort C. O(P)
+  Add the median of C to S. O(1)
+Output: The median of M, a good pivot.

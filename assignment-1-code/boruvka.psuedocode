@@ -1,0 +1,12 @@
+Input: A connected graph G.
+Initialize a forest T to be a set of one-vertex trees
+While T has more than one component:
+  For each component C of T:
+    Begin with an empty set of edges S
+    For each vertex v in C:
+      Find the cheapest edge(s) from v to a vertex outside of C
+      If there is more than one cheapest edge:
+        Choose the first in lexicographic order
+      Add the edge to S
+    Add the cheapest edge in S to T 
+Output: T, the minimum spanning tree of G.
