@@ -98,8 +98,8 @@ The selection of the
 \begin_inset Formula $\Omega(n)$
 \end_inset
 
- by utilizing a partitioning strategy.
- This approach is taken by Quick Select and Linear Select.
+.
+ A paritioning strategy is taken by Quick Select and Linear Select.
  With the choice of a good 
 \begin_inset Formula $pivot$
 \end_inset
@@ -108,328 +108,12 @@ The selection of the
  from further inspection.
 \end_layout
 
-\begin_layout Subsection*
-Steps
-\end_layout
-
-\begin_layout Enumerate
-Demonstrate that a good 
-\begin_inset Formula $pivot$
-\end_inset
-
- value can reduce the overall sequence by 
-\emph on
-at least
-\emph default
- a certain proportion of 
-\begin_inset Formula $n$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Enumerate
-Argue that the step of choosing a good pivot need not have conseqences on
- exponential running time.
-\end_layout
-
-\begin_layout Enumerate
-Show that if a certain proportion of the elements can be excluded from the
- search, the performance must be 
-\begin_inset Formula $\Omega(n)$
-\end_inset
-
-.
-\end_layout
-
 \begin_layout Subsection
-The Value of a Pivot
+Arguing the Low Bounds
 \end_layout
 
 \begin_layout Standard
-If a poor 
-\begin_inset Formula $pivot$
-\end_inset
-
- is chosen, like the first element of a sorted list, then the resulting
- portions 
-\begin_inset Formula $(L,E,G)$
-\end_inset
-
- will be such that the lesser (
-\begin_inset Formula $L$
-\end_inset
-
-) or greater 
-\begin_inset Formula $(G)$
-\end_inset
-
- portions will be insignifigantly smaller than the original sequence to
- be sorted.
-\end_layout
-
-\begin_layout Verbatim
-
--------------------------------------------------------
-\end_layout
-
-\begin_layout Verbatim
-
-| L | E | G                                           |
-\end_layout
-
-\begin_layout Verbatim
-
--------------------------------------------------------
-\end_layout
-
-\begin_layout Verbatim
-
-          (Consequences of a bad pivot)
-\end_layout
-
-\begin_layout Standard
-Choosing a good 
-\begin_inset Formula $pivot$
-\end_inset
-
- value, such as the 
-\emph on
-median of medians
-\emph default
-, results in the portions 
-\begin_inset Formula $(L,E,G)$
-\end_inset
-
- each being of 
-\emph on
-at least
-\emph default
- a certain proportion of the original sequence.
- Assuming a 
-\emph on
-median of medians
-\emph default
- is used, the resulting 
-\begin_inset Formula $pivot$
-\end_inset
-
- value will be, roughly, in the middle of the values of the sequence.
-\end_layout
-
-\begin_layout Verbatim
-
--------------------------------------------------------
-\end_layout
-
-\begin_layout Verbatim
-
-|xxxxxxxxx|       Possible Pivots           |xxxxxxxxx|
-\end_layout
-
-\begin_layout Verbatim
-
--------------------------------------------------------
-\end_layout
-
-\begin_layout Verbatim
-
-      (Ideal pivot location in a sorted sequence)
-\end_layout
-
-\begin_layout Standard
-As a consequence of this choice of pivot, 
-\emph on
-at least
-\emph default
- a certain portion of the sequence will lie in the portion of sequence which
- is not chosen to recurse into by the selection algorithm.
-\end_layout
-
-\begin_layout Verbatim
-
--------------------------------------------------------
-\end_layout
-
-\begin_layout Verbatim
-
-| L             | E | G                               |
-\end_layout
-
-\begin_layout Verbatim
-
--------------------------------------------------------
-\end_layout
-
-\begin_layout Verbatim
-
-      (A good pivot choice, G is recursed into)
-\end_layout
-
-\begin_layout Standard
-Therefore searching searching for the 
-\begin_inset Formula $k^{th}$
-\end_inset
-
- element take 
-\begin_inset Formula $T(n)$
-\end_inset
-
- time, split between the 
-\begin_inset Formula $pivot$
-\end_inset
-
- selection step 
-\begin_inset Formula $S(n)$
-\end_inset
-
-, and the recursion step, where 
-\begin_inset Formula $w$
-\end_inset
-
- is the fraction of the sequence able to be excluded from further comparison
- at each step.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-T(n)\le S(n)+T(\frac{n}{w})
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Time Complexity of Pivot Selection
-\end_layout
-
-\begin_layout Standard
-Selecting a good pivot, such as the 
-\emph on
-median of medians
-\emph default
-, can be accomplished in 
-\begin_inset Formula $O(n)$
-\end_inset
-
- time in the following way:
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand lstinputlisting
-filename "pivot.psuedocode"
-lstparams "breaklines=true,captionpos=b,frame=tb,numbers=left"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-In a worst case scenario, the complexity of this algorithm is 
-\begin_inset Formula $O(3n)$
-\end_inset
-
-.
- This is sufficient for our proof.
- Therefore the complexity is:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-T(n)\le O(3n)+T(\frac{n}{w})
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Proportional Reduction
-\end_layout
-
-\begin_layout Standard
-Since we have shown that
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-T(n)\le O(n)+T(\frac{n}{w})
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-It follows that:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-T(\frac{n}{w})\le O(\frac{n}{w})+T(\frac{n}{w^{2}})
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Which is a value which gets smaller each recursion by at least some signifigant
- fraction 
-\begin_inset Formula $w$
-\end_inset
-
-.
- Therefore:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-T(n)\le nO(n)
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-T(n)=O(n)
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Assuming that by the 
-\begin_inset Formula $n^{th}$
-\end_inset
-
- partitioning that the algorithm has (intelligently) stopped.
-\end_layout
-
-\begin_layout Subsection
-Lower Bound Consideration
-\end_layout
-
-\begin_layout Standard
-It may also be considered that in order to find the 
+It may be considered that in order to find the 
 \begin_inset Formula $k^{th}$
 \end_inset
 
@@ -453,16 +137,42 @@ largest element will always require
 \begin_inset Formula $max(sequence)$
 \end_inset
 
-, which requires only 
-\begin_inset Formula $n$
-\end_inset
-
- comparisons.
+, requires iterating over each element in the list.
  By necessity, this is 
 \begin_inset Formula $\Omega(n)$
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
+In the case of 
+\begin_inset Formula $k<n$
+\end_inset
+
+, any selection algorithm must still be 
+\begin_inset Formula $\Omega(n)$
+\end_inset
+
+ since the element may be at any position in the sequence.
+ Consider the seqeuence 
+\begin_inset Formula $[6,4,1,2,3]$
+\end_inset
+
+, in order to find 
+\begin_inset Formula $k=3$
+\end_inset
+
+ the algorithm must view at least 
+\begin_inset Formula $n$
+\end_inset
+
+ items without prior knowledge of the data in order to be assured what it
+ has selected is actually the 
+\begin_inset Formula $k^{th}$
+\end_inset
+
+ smallest element, otherwise it may select a inappropriate value.
 \end_layout
 
 \begin_layout Section
@@ -746,9 +456,10 @@ This is problematic, as
 \begin_inset Formula $a$
 \end_inset
 
- would need to be a negative number in order for this to hold true.
+ would need to be a negative number, or zero, in order for this to hold
+ true.
  Since 
-\begin_inset Formula $a\nless0$
+\begin_inset Formula $a\nleqslant0$
 \end_inset
 
 , Linear Select with 
