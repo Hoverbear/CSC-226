@@ -146,7 +146,7 @@ public class AVLTree{
         TreeNode y = lastNode;
         TreeNode x = lastLastNode;
         TreeNode a,b,c,t0,t1,t2,t3;
-        System.out.printf("x=%s y=%s z=%s\n", x.nodeValue, y.nodeValue, z.nodeValue);
+        //System.out.printf("x=%s y=%s z=%s\n", x.nodeValue, y.nodeValue, z.nodeValue);
         // Find inorder.
         if (z.nodeValue.compareTo(x.nodeValue) > 0 && x.nodeValue.compareTo(y.nodeValue) > 0) {
           // Left-Right
@@ -223,6 +223,162 @@ public class AVLTree{
        */
     public void remove(TreeNode node){
       /* Your code here */
+      TreeNode newCurrent = node;
+      if (node.leftChild == null && node.rightChild == null) {
+        System.out.printf("Removing a leaf\n");
+        // Is leaf
+        if (node.parent == null) {
+          root = null;
+          node = null;
+        } else if (node.parent.rightChild == node) {
+          node.parent.rightChild = null;
+          newCurrent = node.parent.leftChild;
+        } else {
+          node.parent.leftChild = null;
+          newCurrent = node.parent.rightChild;
+        }
+      } else if(node.rightChild != null) {
+        // Has inorder successor
+        TreeNode successor = node.rightChild;
+        while (successor.leftChild != null) {
+          successor = successor.leftChild;
+        }
+        // After all this, we want to start at the parent of the successor and work up.
+        newCurrent = successor.parent;
+        successor.parent.leftChild = null;
+
+        if (node.parent == null) {
+          // Root
+          root = successor;
+        } else if (node.parent.leftChild == node) {
+          node.parent.leftChild = successor;
+          successor.parent = node.parent;
+        } else if (node.parent.rightChild == node) {
+          node.parent.rightChild = successor;
+          successor.parent = node.parent;
+        }
+        successor.leftChild = node.leftChild;
+        if (node.leftChild != null) {
+          node.leftChild.parent = successor;
+        }
+        successor.rightChild = node.rightChild;
+        if (node.rightChild != null) {
+          node.rightChild.parent = successor;
+        }
+        System.out.printf("Recompule after inorder succ %s\n", successor.nodeValue);
+        successor.recomputeHeight();
+        node = successor;
+      } else if (node.leftChild != null) {
+        // Has inorder predecessor
+        TreeNode predecessor = node.leftChild;
+        while (predecessor.rightChild != null) {
+          predecessor = predecessor.rightChild;
+        }
+        newCurrent = predecessor;
+        predecessor.parent.rightChild = null;
+        if (node.parent == null) {
+          root = predecessor;
+        } else if (node.parent.leftChild == node) {
+          node.parent.leftChild = predecessor;
+          predecessor.parent = node.parent;
+        } else if (node.parent.rightChild == node) {
+          node.parent.rightChild = predecessor;
+          predecessor.parent = node.parent;
+        }
+        predecessor.leftChild = node.leftChild;
+        if (node.rightChild != null) {
+          node.leftChild.parent = predecessor;
+        }
+        predecessor.rightChild = node.rightChild;
+        if (node.rightChild != null) {
+          node.rightChild.parent = predecessor;
+        }
+        System.out.printf("Recompute after inorder pred %s\n", predecessor.nodeValue);
+        predecessor.recomputeHeight(); // Does all heights
+        node = predecessor;
+      }
+      TreeNode currentNode = newCurrent;
+      TreeNode lastNode = null;
+      TreeNode lastLastNode = null;
+      while (currentNode != null) {
+        if (((currentNode.leftChild != null) && (currentNode.height - currentNode.leftChild.height > 2)) ||
+            ((currentNode.rightChild != null) && (currentNode.height - currentNode.rightChild.height > 2)) ||
+            ((currentNode.rightChild == null) && (currentNode.height > 2)) ||
+            ((currentNode.leftChild == null) && (currentNode.height > 2))) {
+          System.out.printf("SHOULD BALANCE NOW\n");
+          // Unbalance here.
+          TreeNode the_parent = currentNode.parent;
+          TreeNode z = currentNode;
+          TreeNode y = lastNode;
+          TreeNode x = lastLastNode;
+          TreeNode a,b,c,t0,t1,t2,t3;
+          System.out.printf("x=%s y=%s z=%s\n", x.nodeValue, y.nodeValue, z.nodeValue);
+          // Find inorder.
+          if (z.nodeValue.compareTo(x.nodeValue) > 0 && x.nodeValue.compareTo(y.nodeValue) > 0) {
+            // Left-Right
+            //System.out.printf("Left-Right (z>x>y)\n");
+            a = y; b = x; c = z;
+            t0 = a.leftChild;  t1 = b.leftChild;
+            t2 = b.rightChild; t3 = c.rightChild;
+          } else if (z.nodeValue.compareTo(y.nodeValue) > 0 && y.nodeValue.compareTo(x.nodeValue) > 0) {
+            // Left-Left
+            //System.out.printf("Left-Left (z>y>x)\n");
+            a = x; b = y; c = z;
+            t0 = a.leftChild;  t1 = a.rightChild;
+            t2 = b.rightChild; t3 = c.rightChild;
+          } else if (x.nodeValue.compareTo(y.nodeValue) > 0 && y.nodeValue.compareTo(z.nodeValue) > 0) {
+            // Right-Left
+            //System.out.printf("Right-Right (x>y>z)\n");
+            a = z; b = y; c = x;
+            t0 = a.leftChild;  t1 = b.leftChild;
+            t2 = c.leftChild; t3 = c.rightChild;
+          } else { // (y.nodeValue.compareTo(x.nodeValue) > 0 && x.nodeValue.compareTo(z.nodeValue) > 0)
+            // Right-Right
+            //System.out.printf("Right-Left (y>x>z)\n");
+            a = z; b = x; c = y;
+            t0 = a.leftChild; t1 = b.leftChild;
+            t2 = b.rightChild; t3 = c.rightChild;
+          } 
+          // Name subtrees
+          // `b` becomes the new root.
+          if (the_parent == null) {
+            root = b;
+            b.parent = null;
+          } else if (the_parent.nodeValue.compareTo(b.nodeValue) > 0) {
+            the_parent.leftChild = b;
+            b.parent = the_parent;
+          } else {
+            the_parent.rightChild = b;
+            b.parent = the_parent;
+          }
+          // `a` becomes left child
+          b.leftChild = a;
+          a.parent = b;
+          // `c` becomes the right child
+          b.rightChild = c;
+          c.parent = b;
+          // Subtrees
+          a.leftChild = t0;
+          if (t0 != null) { t0.parent = a; }
+          a.rightChild = t1;
+          if (t1 != null) { t1.parent = a; }
+          c.leftChild = t2;
+          if (t2 != null) { t2.parent = c; }
+          c.rightChild = t3;
+          if (t3 != null) { t3.parent = c; }
+          // Pointer back
+          a.recomputeHeight();
+          c.recomputeHeight();
+          lastLastNode = lastNode;
+          lastNode = b;
+          currentNode = b.parent;
+        } else {
+          // Balanced leaf.
+          lastLastNode = lastNode;
+          lastNode = currentNode;
+          currentNode = currentNode.parent;
+        }
+      } 
     }
 
 
