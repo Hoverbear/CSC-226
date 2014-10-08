@@ -89,7 +89,6 @@ public class AVLTree{
      */
   public TreeNode insert(String s){
     /* Your code here */
-    System.out.printf("Adding %s\n", s);
     TreeNode newNode = new TreeNode(s);
     // New Root
     if (root == null) {
@@ -154,33 +153,30 @@ public class AVLTree{
         } else {
           x = y.rightChild;
         }
-        if (x == null) {
-          System.out.printf("x is null. Y is %s, height %s children %s %s. Parent %s %s, children %s %s\n", y.nodeValue, y.height, y.leftChild, y.rightChild, z.nodeValue, z.height, z.rightChild, z.leftChild);
-        }
         TreeNode a,b,c,t0,t1,t2,t3;
         //System.out.printf("x=%s y=%s z=%s\n", x.nodeValue, y.nodeValue, z.nodeValue);
         // Find inorder.
         if (z.nodeValue.compareTo(x.nodeValue) > 0 && x.nodeValue.compareTo(y.nodeValue) > 0) {
           // Left-Right
-          System.out.printf("Left-Right (z>x>y)\n");
+          //System.out.printf("Left-Right (z>x>y)\n");
           a = y; b = x; c = z;
           t0 = a.leftChild;  t1 = b.leftChild;
           t2 = b.rightChild; t3 = c.rightChild;
         } else if (z.nodeValue.compareTo(y.nodeValue) > 0 && y.nodeValue.compareTo(x.nodeValue) > 0) {
           // Left-Left
-          System.out.printf("Left-Left (z>y>x)\n");
+          //System.out.printf("Left-Left (z>y>x)\n");
           a = x; b = y; c = z;
           t0 = a.leftChild;  t1 = a.rightChild;
           t2 = b.rightChild; t3 = c.rightChild;
         } else if (x.nodeValue.compareTo(y.nodeValue) > 0 && y.nodeValue.compareTo(z.nodeValue) > 0) {
           // Right-Left
-          System.out.printf("Right-Right (x>y>z)\n");
+          //System.out.printf("Right-Right (x>y>z)\n");
           a = z; b = y; c = x;
           t0 = a.leftChild;  t1 = b.leftChild;
           t2 = c.leftChild; t3 = c.rightChild;
         } else { // (y.nodeValue.compareTo(x.nodeValue) > 0 && x.nodeValue.compareTo(z.nodeValue) > 0)
           // Right-Right
-          System.out.printf("Right-Left (y>x>z)\n");
+          //System.out.printf("Right-Left (y>x>z)\n");
           a = z; b = x; c = y;
           t0 = a.leftChild; t1 = b.leftChild;
           t2 = b.rightChild; t3 = c.rightChild;
@@ -230,14 +226,12 @@ public class AVLTree{
      */
   public void remove(TreeNode node){
     /* Your code here */
-    System.out.printf("---Removing %s\n", node.nodeValue);
     TreeNode newCurrent = node;
 
     if (node.leftChild == null && node.rightChild == null) {
       // It's a Leaf Node
       // Remove it
       // // What if it's the root?
-      System.out.printf("It's a leaf!\n");
       if (node.parent == null) { root = null; }
       else { // It's not the root.
         if (node.parent.leftChild == node) { node.parent.leftChild = null; }
@@ -248,7 +242,6 @@ public class AVLTree{
       newCurrent = node.parent;
       // The parent might need to be rebalanced, or anything 'up' the tree.
     } else if (node.rightChild != null) {
-      System.out.printf("It's got a succ\n");
       // It has an in-order successor. 
       // // Find it, right -> left -> left...
       TreeNode successor = node.rightChild;
@@ -278,7 +271,6 @@ public class AVLTree{
       newCurrent = successor.parent;
     } else if (node.rightChild == null && node.leftChild != null) {
       // It has no in-order successor, but has a predecessor. 
-      System.out.printf("It's got a pred\n");
       // // Find it. left -> right -> right...
       TreeNode predecessor = node.leftChild;
       while (predecessor.rightChild != null) { predecessor = predecessor.rightChild; }
@@ -308,13 +300,6 @@ public class AVLTree{
     }
     TreeNode currentNode = newCurrent;
     while (currentNode != null) {
-      System.out.printf("Current is %s %s,  ", currentNode.nodeValue, currentNode.height);
-      if (currentNode.leftChild != null) {
-        System.out.printf("Left on %s %s  ", currentNode.leftChild.nodeValue, currentNode.leftChild.height);
-      }
-      if (currentNode.rightChild != null) {
-        System.out.printf("Right on %s %s\n", currentNode.rightChild.nodeValue, currentNode.rightChild.height);
-      }  
       int leftHeight = (currentNode.leftChild == null)? -1: currentNode.leftChild.height;
       int rightHeight = (currentNode.rightChild == null)? -1: currentNode.rightChild.height;
       if (leftHeight - rightHeight > 1 || rightHeight - leftHeight > 1) {
@@ -351,29 +336,25 @@ public class AVLTree{
         // Find inorder.
         if (z.nodeValue.compareTo(x.nodeValue) > 0 && x.nodeValue.compareTo(y.nodeValue) > 0) {
           // Left-Right
-          System.out.printf("Left-Right (z>x>y) %s %s %s\n", z.nodeValue, x.nodeValue, y.nodeValue);
-;
+          // System.out.printf("Left-Right (z>x>y) %s %s %s\n", z.nodeValue, x.nodeValue, y.nodeValue);
           a = y; b = x; c = z;
           t0 = a.leftChild;  t1 = b.leftChild;
           t2 = b.rightChild; t3 = c.rightChild;
         } else if (z.nodeValue.compareTo(y.nodeValue) > 0 && y.nodeValue.compareTo(x.nodeValue) > 0) {
           // Left-Left
-          System.out.printf("Left-Left (z>y>x) %s %s %s\n", z.nodeValue, y.nodeValue, x.nodeValue);
-
+          // System.out.printf("Left-Left (z>y>x) %s %s %s\n", z.nodeValue, y.nodeValue, x.nodeValue);
           a = x; b = y; c = z;
           t0 = a.leftChild;  t1 = a.rightChild;
           t2 = b.rightChild; t3 = c.rightChild;
         } else if (x.nodeValue.compareTo(y.nodeValue) > 0 && y.nodeValue.compareTo(z.nodeValue) > 0) {
           // Right-Right
-          System.out.printf("Right-Right (x>y>z) %s %s %s\n", x.nodeValue, y.nodeValue, z.nodeValue);
-
+          //System.out.printf("Right-Right (x>y>z) %s %s %s\n", x.nodeValue, y.nodeValue, z.nodeValue);
           a = z; b = y; c = x;
           t0 = a.leftChild;  t1 = b.leftChild;
           t2 = c.leftChild; t3 = c.rightChild;
         } else { // (y.nodeValue.compareTo(x.nodeValue) > 0 && x.nodeValue.compareTo(z.nodeValue) > 0)
           // Right-Left
-          System.out.printf("Right-Left (y>x>z) %s %s %s\n", y.nodeValue, x.nodeValue, z.nodeValue);
-
+          // System.out.printf("Right-Left (y>x>z) %s %s %s\n", y.nodeValue, x.nodeValue, z.nodeValue);
           a = z; b = x; c = y;
           t0 = a.leftChild; t1 = b.leftChild;
           t2 = b.rightChild; t3 = c.rightChild;
@@ -409,16 +390,10 @@ public class AVLTree{
         a.recomputeHeight();
         c.recomputeHeight();
         currentNode = c;
-        if (currentNode != null) {
-          System.out.printf("Just restructured parent is %s...\n", currentNode.nodeValue);
-        }
       } else {
         // Balanced leaf.
         currentNode = currentNode.parent;
       }
-    }
-    if (!root.verifyAVL()) {
-      System.out.printf("--- %s broke AVL, height: %s\n", node.nodeValue, node.height);
     }
   }
 
