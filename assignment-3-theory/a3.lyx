@@ -1,0 +1,280 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip smallskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Assignment 3 - Theory
+\end_layout
+
+\begin_layout Author
+Andrew Hobden (V00788452)
+\end_layout
+
+\begin_layout Section
+Minimum Spanning vs Shortest Path Tree
+\end_layout
+
+\begin_layout Standard
+Dijkstra's Single Source Shortest Path problem produces a Shortest Path
+ Tree.
+ Compare the Shortest Path Tree to the Minimum Weight Spanning Tree on the
+ graph below.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename mst spt.svg
+	width 90text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The resulting Miniumum Weight Spanning Tree has 
+\begin_inset Formula $weight=32$
+\end_inset
+
+, while the resulting Shortest Path Tree has 
+\begin_inset Formula $weight=36$
+\end_inset
+
+.
+ Therefore the Shortest Path Tree produced by Dijkstra's Since Source Path
+ problem is not necessarily the Minimum Weight Spanning Tree.
+\end_layout
+
+\begin_layout Section
+Directed Dijkstra's Algorithm
+\end_layout
+
+\begin_layout Standard
+Assuming a directed graph 
+\begin_inset Formula $D=(V,E)$
+\end_inset
+
+ with points 
+\begin_inset Formula $\{x,y\}$
+\end_inset
+
+, and 
+\begin_inset Formula $P_{D}$
+\end_inset
+
+ is the shortest path between 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+ in 
+\begin_inset Formula $D$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+There are no cycles in 
+\begin_inset Formula $P_{D}$
+\end_inset
+
+, otherwise two edges may be removed from 
+\begin_inset Formula $P_{D}$
+\end_inset
+
+ and it will result in a path with the same source and destination, but
+ a lower cost.
+\end_layout
+
+\begin_layout Itemize
+Since there are no cycles, 
+\begin_inset Formula $P_{D}$
+\end_inset
+
+ contains only edges 
+\begin_inset Formula $E_{P}=e_{0},...,e_{i-1},e_{i}\in P_{D}$
+\end_inset
+
+ travelling in one 'direction'.
+ That is, there be cannot a part of 
+\begin_inset Formula $P_{D}$
+\end_inset
+
+ which requires the algorithm backtrack, since this would result in a cycle
+ between 
+\begin_inset Formula $e_{\{j,k\}}$
+\end_inset
+
+ and 
+\begin_inset Formula $e_{\{g,h\}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Any directed graph 
+\begin_inset Formula $D_{a}$
+\end_inset
+
+ can be seen as a subset of the undirected graph 
+\begin_inset Formula $U_{a}$
+\end_inset
+
+.
+ This is because an undirected graph can be transformed into a directed
+ graph with each undirected edge 
+\begin_inset Formula $e_{a}$
+\end_inset
+
+ being replaced by pair of oppositely pointing directed edges 
+\begin_inset Formula $\{e_{b},e_{c}\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Dijkstra's Algorithm always pulls in the lowest cost edge into it's set
+ that doesn't create a cycle.
+ It cannot select edges from outside of the set travelling into the set,
+ only outgoing edges.
+\end_layout
+
+\begin_layout Standard
+Finally, let 
+\begin_inset Formula $P=\{P_{0},...,P_{D},...,P_{N}\}$
+\end_inset
+
+ be the set of all shortest pathes from a source 
+\begin_inset Formula $x$
+\end_inset
+
+ to the other vertexes in the graph.
+ This is the Shortest Path Tree.
+ 
+\end_layout
+
+\begin_layout Section
+Shortest Paths to a Vertex Pseudocode
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "dijkstra.pseudocode"
+lstparams "breaklines=true,captionpos=b,frame=tb,numbers=left"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Shortest Path Algorithm
+\end_layout
+
+\begin_layout Section
+Application Areas
+\end_layout
+
+\begin_layout Enumerate
+Logistics and shipping.
+ Dijksta's algorithm is can be utilized by logistics companies to plan packages
+ routes and optimize shipping.
+ For example, if a graph where each vertex is a depot, and edges are weighted
+ according to the distance and/or cost to move items to that depot from
+ others, Dijkstra's can be used to find the shortest or cheapest path to
+ move the item along.
+\end_layout
+
+\begin_layout Enumerate
+Geographic Information System.
+ For an application like Google Maps which produces directions between points
+ A and B, Dijkstra's can be used to determine the optimal path along roads
+ or other methods of transit like ferries, buses, or freeways.
+ In this case, edge weights do not necessarily represent the distance travelled,
+ but might be weighted based on a number of factors, including traffic and
+ weather warnings.
+\end_layout
+
+\begin_layout Enumerate
+Network Routing.
+ In order to determine the optimal route for packets within a communications
+ network Dijkstra's algorithm can be used, in this case edge weights might
+ be determined by the link rate between routers.
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,203 @@
+Reading input values from sparse_ewg_50vertices.txt.
+Reading graph 1
+Graph 1: Minimum weight of a 0-1 path is 9885
+Reading graph 2
+Graph 2: Minimum weight of a 0-1 path is 8095
+Reading graph 3
+Graph 3: Minimum weight of a 0-1 path is 4735
+Reading graph 4
+Graph 4: Minimum weight of a 0-1 path is 9735
+Reading graph 5
+Graph 5: Minimum weight of a 0-1 path is 10340
+Reading graph 6
+Graph 6: Minimum weight of a 0-1 path is 11681
+Reading graph 7
+Graph 7: Minimum weight of a 0-1 path is 7569
+Reading graph 8
+Graph 8: Minimum weight of a 0-1 path is 9102
+Reading graph 9
+Graph 9: Minimum weight of a 0-1 path is 7502
+Reading graph 10
+Graph 10: Minimum weight of a 0-1 path is 6912
+Reading graph 11
+Graph 11: Minimum weight of a 0-1 path is 6928
+Reading graph 12
+Graph 12: Minimum weight of a 0-1 path is 4064
+Reading graph 13
+Graph 13: Minimum weight of a 0-1 path is 7398
+Reading graph 14
+Graph 14: Minimum weight of a 0-1 path is 6597
+Reading graph 15
+Graph 15: Minimum weight of a 0-1 path is 9199
+Reading graph 16
+Graph 16: Minimum weight of a 0-1 path is 2513
+Reading graph 17
+Graph 17: Minimum weight of a 0-1 path is 7763
+Reading graph 18
+Graph 18: Minimum weight of a 0-1 path is 2216
+Reading graph 19
+Graph 19: Minimum weight of a 0-1 path is 5291
+Reading graph 20
+Graph 20: Minimum weight of a 0-1 path is 6242
+Reading graph 21
+Graph 21: Minimum weight of a 0-1 path is 9196
+Reading graph 22
+Graph 22: Minimum weight of a 0-1 path is 7496
+Reading graph 23
+Graph 23: Minimum weight of a 0-1 path is 6473
+Reading graph 24
+Graph 24: Minimum weight of a 0-1 path is 4344
+Reading graph 25
+Graph 25: Minimum weight of a 0-1 path is 6568
+Reading graph 26
+Graph 26: Minimum weight of a 0-1 path is 6693
+Reading graph 27
+Graph 27: Minimum weight of a 0-1 path is 4898
+Reading graph 28
+Graph 28: Minimum weight of a 0-1 path is 2894
+Reading graph 29
+Graph 29: Minimum weight of a 0-1 path is 4707
+Reading graph 30
+Graph 30: Minimum weight of a 0-1 path is 7342
+Reading graph 31
+Graph 31: Minimum weight of a 0-1 path is 3854
+Reading graph 32
+Graph 32: Minimum weight of a 0-1 path is 2504
+Reading graph 33
+Graph 33: Minimum weight of a 0-1 path is 10107
+Reading graph 34
+Graph 34: Minimum weight of a 0-1 path is 4971
+Reading graph 35
+Graph 35: Minimum weight of a 0-1 path is 7758
+Reading graph 36
+Graph 36: Minimum weight of a 0-1 path is 6462
+Reading graph 37
+Graph 37: Minimum weight of a 0-1 path is 467
+Reading graph 38
+Graph 38: Minimum weight of a 0-1 path is 2739
+Reading graph 39
+Graph 39: Minimum weight of a 0-1 path is 7694
+Reading graph 40
+Graph 40: Minimum weight of a 0-1 path is 11041
+Reading graph 41
+Graph 41: Minimum weight of a 0-1 path is 1475
+Reading graph 42
+Graph 42: Minimum weight of a 0-1 path is 2178
+Reading graph 43
+Graph 43: Minimum weight of a 0-1 path is 5965
+Reading graph 44
+Graph 44: Minimum weight of a 0-1 path is 9597
+Reading graph 45
+Graph 45: Minimum weight of a 0-1 path is 9532
+Reading graph 46
+Graph 46: Minimum weight of a 0-1 path is 6279
+Reading graph 47
+Graph 47: Minimum weight of a 0-1 path is 4162
+Reading graph 48
+Graph 48: Minimum weight of a 0-1 path is 2865
+Reading graph 49
+Graph 49: Minimum weight of a 0-1 path is 9711
+Reading graph 50
+Graph 50: Minimum weight of a 0-1 path is 7717
+Reading graph 51
+Graph 51: Minimum weight of a 0-1 path is 8540
+Reading graph 52
+Graph 52: Minimum weight of a 0-1 path is 2096
+Reading graph 53
+Graph 53: Minimum weight of a 0-1 path is 1311
+Reading graph 54
+Graph 54: Minimum weight of a 0-1 path is 5085
+Reading graph 55
+Graph 55: Minimum weight of a 0-1 path is 8947
+Reading graph 56
+Graph 56: Minimum weight of a 0-1 path is 5340
+Reading graph 57
+Graph 57: Minimum weight of a 0-1 path is 4836
+Reading graph 58
+Graph 58: Minimum weight of a 0-1 path is 9203
+Reading graph 59
+Graph 59: Minimum weight of a 0-1 path is 9133
+Reading graph 60
+Graph 60: Minimum weight of a 0-1 path is 3178
+Reading graph 61
+Graph 61: Minimum weight of a 0-1 path is 8272
+Reading graph 62
+Graph 62: Minimum weight of a 0-1 path is 3737
+Reading graph 63
+Graph 63: Minimum weight of a 0-1 path is 5483
+Reading graph 64
+Graph 64: Minimum weight of a 0-1 path is 12157
+Reading graph 65
+Graph 65: Minimum weight of a 0-1 path is 8347
+Reading graph 66
+Graph 66: Minimum weight of a 0-1 path is 14693
+Reading graph 67
+Graph 67: Minimum weight of a 0-1 path is 8811
+Reading graph 68
+Graph 68: Minimum weight of a 0-1 path is 3642
+Reading graph 69
+Graph 69: Minimum weight of a 0-1 path is 6447
+Reading graph 70
+Graph 70: Minimum weight of a 0-1 path is 3284
+Reading graph 71
+Graph 71: Minimum weight of a 0-1 path is 5147
+Reading graph 72
+Graph 72: Minimum weight of a 0-1 path is 7151
+Reading graph 73
+Graph 73: Minimum weight of a 0-1 path is 6783
+Reading graph 74
+Graph 74: Minimum weight of a 0-1 path is 3553
+Reading graph 75
+Graph 75: Minimum weight of a 0-1 path is 9999
+Reading graph 76
+Graph 76: Minimum weight of a 0-1 path is 5513
+Reading graph 77
+Graph 77: Minimum weight of a 0-1 path is 4498
+Reading graph 78
+Graph 78: Minimum weight of a 0-1 path is 1323
+Reading graph 79
+Graph 79: Minimum weight of a 0-1 path is 3970
+Reading graph 80
+Graph 80: Minimum weight of a 0-1 path is 7772
+Reading graph 81
+Graph 81: Minimum weight of a 0-1 path is 5320
+Reading graph 82
+Graph 82: Minimum weight of a 0-1 path is 5450
+Reading graph 83
+Graph 83: Minimum weight of a 0-1 path is 2825
+Reading graph 84
+Graph 84: Minimum weight of a 0-1 path is 5232
+Reading graph 85
+Graph 85: Minimum weight of a 0-1 path is 10951
+Reading graph 86
+Graph 86: Minimum weight of a 0-1 path is 8254
+Reading graph 87
+Graph 87: Minimum weight of a 0-1 path is 3871
+Reading graph 88
+Graph 88: Minimum weight of a 0-1 path is 6006
+Reading graph 89
+Graph 89: Minimum weight of a 0-1 path is 3764
+Reading graph 90
+Graph 90: Minimum weight of a 0-1 path is 5291
+Reading graph 91
+Graph 91: Minimum weight of a 0-1 path is 832
+Reading graph 92
+Graph 92: Minimum weight of a 0-1 path is 2816
+Reading graph 93
+Graph 93: Minimum weight of a 0-1 path is 6671
+Reading graph 94
+Graph 94: Minimum weight of a 0-1 path is 7345
+Reading graph 95
+Graph 95: Minimum weight of a 0-1 path is 14754
+Reading graph 96
+Graph 96: Minimum weight of a 0-1 path is 4990
+Reading graph 97
+Graph 97: Minimum weight of a 0-1 path is 6739
+Reading graph 98
+Graph 98: Minimum weight of a 0-1 path is 4781
+Reading graph 99
+Graph 99: Minimum weight of a 0-1 path is 5116
+Reading graph 100
+Graph 100: Minimum weight of a 0-1 path is 3945
+Processed 100 graphs.
+Average Time (seconds): 0.00

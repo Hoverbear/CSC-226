@@ -1,0 +1,35 @@
+fn Dijkstra(G: Graph, source: Node):
+  let V = G.vertices
+  let E = G.edges
+  let D: [int]  // Distance from source
+  let P: [Node] // Predecessor of v
+  let Q: PriorityQueue<int>
+  
+  for each v in V:
+    if v == source:
+      dist[v] = 0
+    else
+      dist[v] = infinity
+    end if
+    Q.add_with_priority(v, dist[v])
+  end for
+  
+  while Q is not empty:
+    let u = Q.extract_min()
+    // Pull into cloud
+    u.scanned = true
+    // Search neighbors
+    for each v in u.neighbors:
+      // Not in cloud
+      if v.scanned == false:
+        let new = D[u] + length(u,v)
+        if new < D[v]:
+          D[v] = new
+          P[v] = u
+          Q.decrease_priority(v, new)
+        end if
+      end if
+    end for
+  end while
+
+  return P

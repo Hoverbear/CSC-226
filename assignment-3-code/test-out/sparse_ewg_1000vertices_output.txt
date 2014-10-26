@@ -1,0 +1,13 @@
+Reading input values from sparse_ewg_1000vertices.txt.
+Reading graph 1
+Graph 1: Minimum weight of a 0-1 path is 1814744
+Reading graph 2
+Graph 2: Minimum weight of a 0-1 path is 2309181
+Reading graph 3
+Graph 3: Minimum weight of a 0-1 path is 2445981
+Reading graph 4
+Graph 4: Minimum weight of a 0-1 path is 1378010
+Reading graph 5
+Graph 5: Minimum weight of a 0-1 path is 2211007
+Processed 5 graphs.
+Average Time (seconds): 0.00

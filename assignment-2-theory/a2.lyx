@@ -81,6 +81,23 @@ Andrew Hobden (V00788452)
 Euclidean Minimum Spanning Trees
 \end_layout
 
+\begin_layout Standard
+Any of the minimum spanning tree algorithms can be used for this problem.
+ Since performance is not a limiting concern, the simplest case is to build
+ a set of edges from each point to each other, then perform Boruvka's algorithm.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "emst.pseudocode"
+lstparams "breaklines=true,captionpos=b,frame=tb,numbers=left"
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Union-Find Data Structure
 \end_layout
@@ -99,34 +116,8 @@ Union-Find Data Structure
 AVL Trees
 \end_layout
 
-\begin_layout Standard
-A tree of height 9 will have at most 
-\begin_inset Formula $max$
-\end_inset
-
- nodes.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-9=\log_{2}max
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-max=512
-\]
-
-\end_inset
-
-
+\begin_layout Subsection
+Internal Nodes
 \end_layout
 
 \begin_layout Standard
@@ -143,7 +134,7 @@ http://www.cs.cornell.edu/courses/cs312/2008sp/lectures/lec_avl.html
 \end_layout
 
 \begin_layout Standard
-However we want the minimum, so let us examine the least balanced tree possible.
+We want the minimum, so let us examine the least balanced tree possible.
  Let 
 \begin_inset Formula $N(h)$
 \end_inset
@@ -241,8 +232,57 @@ lstparams "breaklines=true,captionpos=b,frame=tb,numbers=left"
 
 \end_layout
 
+\begin_layout Subsection
+Number of Restructures
+\end_layout
+
+\begin_layout Standard
+In a tree of height 9 would have a maximum of 9 restructures in the case
+ where the tree had a structure like so:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename avl.png
+	width 90line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In the case of removing 'x', each resulting restructure will require further
+ rebalance all the way up the tree.
+\end_layout
+
 \begin_layout Section
 AVL Trees
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename restructure.png
+	width 90line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The variant proposed fails to maintain the ordering of 
+\begin_inset Formula $z>y>x$
+\end_inset
+
+, while the original restructure does.
+ Because of this, the 
+\series bold
+in-ordering
+\series default
+ of the AVL tree is violated.
+ Since an AVL tree must be a valid Binary Search Tree, this is not a valid
+ restructuring method.
 \end_layout
 
 \end_body

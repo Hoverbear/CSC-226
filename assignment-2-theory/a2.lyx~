@@ -1,0 +1,289 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip smallskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+CSC 226 - Assignment 2
+\end_layout
+
+\begin_layout Author
+Andrew Hobden (V00788452)
+\end_layout
+
+\begin_layout Section
+Euclidean Minimum Spanning Trees
+\end_layout
+
+\begin_layout Standard
+Any of the minimum spanning tree algorithms can be used for this problem.
+ Since performance is not a limiting concern, the simplest case is to build
+ a set of edges from each point to each other, then perform Boruvka's algorithm.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "emst.pseudocode"
+lstparams "breaklines=true,captionpos=b,frame=tb,numbers=left"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Union-Find Data Structure
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename union-find.png
+	width 80line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+AVL Trees
+\end_layout
+
+\begin_layout Subsection
+Internal Nodes
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+http://www.cs.cornell.edu/courses/cs312/2008sp/lectures/lec_avl.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+However we want the minimum, so let us examine the least balanced tree possible.
+ Let 
+\begin_inset Formula $N(h)$
+\end_inset
+
+ be the minimum number of nodes.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+N(0)=1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+N(1)=2
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+N(2)=4
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If can be observed that:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+N(h)=1+N(h-1)+N(h-2)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This follows from the fact that a tree of height 
+\begin_inset Formula $h$
+\end_inset
+
+ must be composed of at least a root node, a tree of height 
+\begin_inset Formula $h-1$
+\end_inset
+
+, and a tree of height 
+\begin_inset Formula $h-2$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Therefore, a tree of height 9 must have:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+N(9)=143
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "n.rs"
+lstparams "breaklines=true,captionpos=b,frame=tb,numbers=left"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Number of Restructures
+\end_layout
+
+\begin_layout Standard
+In a tree of height 9 would have a maximum of 9 restructures in the case
+ where the tree had a structure like so:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename avl.png
+	width 90line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In the case of removing 'x', each resulting restructure will require further
+ rebalance all the way up the tree.
+\end_layout
+
+\begin_layout Section
+AVL Trees
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename restructure.png
+	width 90line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The variant proposed fails to maintain the ordering of 
+\begin_inset Formula $z>y>x$
+\end_inset
+
+, while the original restructure does.
+ Because of this, the 
+\series bold
+in-ordering
+\series default
+ of the AVL tree is violated.
+ Since an AVL tree must be a valid Binary Search Tree, this is not a valid
+ restructuring method.
+\end_layout
+
+\end_body
+\end_document
