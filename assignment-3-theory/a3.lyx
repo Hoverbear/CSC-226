@@ -113,74 +113,40 @@ The resulting Miniumum Weight Spanning Tree has
 \end_layout
 
 \begin_layout Section
-Directed Dijkstra's Algorithm
+Dijksta Correctness
 \end_layout
 
 \begin_layout Standard
-Assuming a directed graph 
-\begin_inset Formula $D=(V,E)$
+We'll use the following observations:
+\end_layout
+
+\begin_layout Itemize
+Optimal Substructure: A subpath of any shortest path is itself a shortest
+ path.
+\end_layout
+
+\begin_layout Itemize
+Triangle Inequality: If 
+\begin_inset Formula $\delta(u,v)$
 \end_inset
 
- with points 
-\begin_inset Formula $\{x,y\}$
+ is the shortest path from 
+\begin_inset Formula $u$
 \end_inset
 
-, and 
-\begin_inset Formula $P_{D}$
+ to 
+\begin_inset Formula $v$
 \end_inset
 
- is the shortest path between 
+, then 
+\begin_inset Formula $\delta(u,v)\leq\delta(u,x)+\delta(x,v)$
+\end_inset
+
+ for some 
 \begin_inset Formula $x$
 \end_inset
 
- and 
-\begin_inset Formula $y$
-\end_inset
-
- in 
-\begin_inset Formula $D$
-\end_inset
-
-:
-\end_layout
-
-\begin_layout Itemize
-There are no cycles in 
-\begin_inset Formula $P_{D}$
-\end_inset
-
-, otherwise two edges may be removed from 
-\begin_inset Formula $P_{D}$
-\end_inset
-
- and it will result in a path with the same source and destination, but
- a lower cost.
-\end_layout
-
-\begin_layout Itemize
-Since there are no cycles, 
-\begin_inset Formula $P_{D}$
-\end_inset
-
- contains only edges 
-\begin_inset Formula $E_{P}=e_{0},...,e_{i-1},e_{i}\in P_{D}$
-\end_inset
-
- travelling in one 'direction'.
- That is, there be cannot a part of 
-\begin_inset Formula $P_{D}$
-\end_inset
-
- which requires the algorithm backtrack, since this would result in a cycle
- between 
-\begin_inset Formula $e_{\{j,k\}}$
-\end_inset
-
- and 
-\begin_inset Formula $e_{\{g,h\}}$
-\end_inset
-
-.
+ in the graph.
 \end_layout
 
 \begin_layout Itemize
@@ -206,28 +172,119 @@ Any directed graph
 \end_layout
 
 \begin_layout Itemize
+No Cycles in Shortest Path: There are no cycles in shortest path
+\begin_inset Formula $p$
+\end_inset
+
+, otherwise two edges may be removed from 
+\begin_inset Formula $p$
+\end_inset
+
+ and it will result in a path with the same source and destination, but
+ a lower cost.
+\end_layout
+
+\begin_layout Itemize
+Since there are no cycles, 
+\begin_inset Formula $p$
+\end_inset
+
+ contains only edges 
+\begin_inset Formula $E_{P}=e_{0},...,e_{i-1},e_{i}\in p$
+\end_inset
+
+ travelling in one 'direction'.
+ That is, there be cannot a part of 
+\begin_inset Formula $P_{D}$
+\end_inset
+
+ which requires the algorithm backtrack, since this would result in a cycle
+ between 
+\begin_inset Formula $e_{\{j,k\}}$
+\end_inset
+
+ and 
+\begin_inset Formula $e_{\{g,h\}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
 Dijkstra's Algorithm always pulls in the lowest cost edge into it's set
- that doesn't create a cycle.
+ that doesn't connect to an already scanned node.
  It cannot select edges from outside of the set travelling into the set,
  only outgoing edges.
 \end_layout
 
+\begin_layout Description
+Theorem: Once a node joins 
+\begin_inset Formula $P$
+\end_inset
+
+, the 'cloud' of Dijkstra's algorithm, its label is the shortest label it
+ shall obtain.
+\end_layout
+
+\begin_layout Subsubsection*
+Proof
+\end_layout
+
 \begin_layout Standard
-Finally, let 
-\begin_inset Formula $P=\{P_{0},...,P_{D},...,P_{N}\}$
+Base Case: When 
+\begin_inset Formula $|P|=1$
 \end_inset
 
- be the set of all shortest pathes from a source 
-\begin_inset Formula $x$
+, the only node in 
+\begin_inset Formula $P$
 \end_inset
 
- to the other vertexes in the graph.
- This is the Shortest Path Tree.
+ is 
+\begin_inset Formula $s$
+\end_inset
+
+, the source node.
  
+\begin_inset Formula $s$
+\end_inset
+
+ is correctly labelled it 0.
+\end_layout
+
+\begin_layout Standard
+Inductive Step: Assuming valid for 
+\begin_inset Formula $|P|=k$
+\end_inset
+
+, showing for 
+\begin_inset Formula $|P|=k+1$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
 Shortest Paths to a Vertex Pseudocode
+\end_layout
+
+\begin_layout Standard
+This 
+\begin_inset Quotes eld
+\end_inset
+
+Single Destination Shortest Path
+\begin_inset Quotes erd
+\end_inset
+
+ problem can be solved by simply performing Dijkstra's 
+\begin_inset Quotes eld
+\end_inset
+
+Single Source Shortest Path
+\begin_inset Quotes erd
+\end_inset
+
+ problem and reversing the determined paths.
 \end_layout
 
 \begin_layout Standard

@@ -1,8 +1,8 @@
-fn Dijkstra(G: Graph, source: Node):
+fn SingleDestinationShortestPath(G: Graph, source: Node):
   let V = G.vertices
   let E = G.edges
   let D: [int]  // Distance from source
-  let P: [Node] // Predecessor of v
+  let P: [Node] // Predecessors of i
   let Q: PriorityQueue<int>
   
   for each v in V:
@@ -31,5 +31,10 @@ fn Dijkstra(G: Graph, source: Node):
       end if
     end for
   end while
+  // P is now the Single-Source Shortest Path
+  // Inverse P
+  let S: [Node] // Successors of i
+  for index i in P:
+    S[P[i]] = i // Inverse direction
 
-  return P
+  return S

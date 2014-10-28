@@ -35,24 +35,149 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Vector;
 import java.io.File;
-import java.util.PriorityQueue;
 import java.util.ArrayList;
 
-class Data implements Comparable<Data> {
-	int index, weight;
+class VertexHeapElement{
+	public static final int INVALID_WEIGHT = Integer.MAX_VALUE;
+	public int v;
+	public int weight;
+	public VertexHeapElement(int v){
+		this.v = v;
+		this.weight = INVALID_WEIGHT;
+	}
+}
+class VertexHeap{
+	//Array based heap using 1-based indexing.
+	public VertexHeapElement[] heap;
+
+	//indices[v] contains the index i such that heap[i].v == v
+	public int[] indices;
+
+	//Index of last valid element in heap (also number of elements since indexing is 1-based)
+	private int heapEnd;
+
+	//Initialize a vertex heap over n vertices, with
+	//each vertex's weight initialized to infinity.
+	public VertexHeap(int n){
+		heap = new VertexHeapElement[n+1];
+		indices = new int[n+1];
+		heapEnd = n;
+		for (int i = 0; i < n; i++){
+			heap[i+1] = new VertexHeapElement(i);
+			indices[i] = i+1;
+		}
+	}
+
+	//Return the size of the heap
+	public int size(){
+		return heapEnd;
+	}
+
+	//Print the contents of the heap (on one line)
+	public void printContents(String title){
+		if (!title.equals(""))
+			System.out.printf("%s: ",title);
+		for (int i = 1; i <= heapEnd; i++){
+			if (heap[i].weight != VertexHeapElement.INVALID_WEIGHT)
+				System.out.printf("%d (%d), ",heap[i].v, heap[i].weight);
+			else
+				System.out.printf("%d (inf), ",heap[i].v);
+		}
+		System.out.printf("\n");
+	}
+
+	private void heapSwap(int i, int j) {
+		VertexHeapElement element_i = heap[i];
+		VertexHeapElement element_j = heap[j];
+		heap[j] = element_i;
+		heap[i] = element_j;
+		indices[heap[j].v] = j;
+		indices[heap[i].v] = i;
+	}
+
+	private void bubbleDown(int i) {
+		// Children of node is 2*i, 2*i+1
+		// 1 based indexing!
+		if (2*i > heapEnd) {
+			// If there are no children, we're done.
+			return;
+		}
+		// If two children, choose smallest.
+		// If one children assume left child is inf.
+		int leftIndex = 2*i;
+		int leftWeight = heap[leftIndex].weight;
+		int rightIndex = 2*i+1;
+		int rightWeight = VertexHeapElement.INVALID_WEIGHT;
+		if (rightIndex <= heapEnd) {
+			rightWeight = heap[rightIndex].weight;
+		}
+		int minChildIndex = leftIndex;
+		if (leftWeight > rightWeight) {
+			minChildIndex = rightIndex;
+		}
+		if (heap[i].weight < heap[minChildIndex].weight) {
+			return; // No need to bubble down.
+		}
+		heapSwap(i, minChildIndex);
+		bubbleDown(minChildIndex);
+	}
+
+	private void bubbleUp(int i) {
+		// PARENT = floor i/2
+		// 1 based indexing!
+		if (Math.floor(i/2) < 1) {
+			// This is the root, we're done.
+			return;
+		}
+		// If two children, choose smallest.
+		// If one children assume left child is inf.
+		int parentIndex = (int) Math.floor(i/2);
+		if (heap[i].weight > heap[parentIndex].weight) {
+			return; // No need to bubble up.
+		}
+		heapSwap(i, parentIndex);
+		bubbleUp(parentIndex);
+	}
+
+	//Remove and return the minimum element.
+	public VertexHeapElement removeMin(){
+		VertexHeapElement removeElement = heap[1]; // Minimum
+		heapSwap(1, heapEnd);
+		heapEnd--;
+		bubbleDown(1);
+		return removeElement;
+	}
+
+	//Return the current weight of a vertex.
+	public int getWeight(int vertex){
+		int heap_index = indices[vertex];
+		VertexHeapElement e = heap[heap_index];
+		return e.weight;
+	}
+
+	//Set the weight of vertex adjust_vertex to new_weight.
+	public void adjust(int adjust_vertex, int new_weight){
+
+		int adjust_index = indices[adjust_vertex];
+		VertexHeapElement adjustElement = heap[adjust_index];
+		if (new_weight > adjustElement.weight)
+			throw new Error(); //This shouldn't happen in Dijkstra's algorithm
+		adjustElement.weight = new_weight;
+		//Bubble up adjustElement (not implemented)
+		// PARENT = floor i/2
+		bubbleUp(adjust_index);
+	}
+}
+
+class Data {
+	int index;
 	boolean scanned;
 	ArrayList<Integer> neighbors;
 
-	Data(int index, int weight, ArrayList<Integer> neighbors) {
+	Data(int index, ArrayList<Integer> neighbors) {
 		this.index = index;
-		this.weight = weight;
 		this.neighbors = neighbors;
 		this.scanned = false;
-	}
-
-	@Override
-	public int compareTo(Data other) {
-		return Integer.compare(this.weight, other.weight);
 	}
 }
 
@@ -71,7 +196,7 @@ public class ShortestPath{
 		int numVerts = G.length;
 		int totalWeight = 0;
 		/* ... Your code here ... */
-		PriorityQueue<Data> queue = new PriorityQueue<Data>(numVerts);
+		VertexHeap queue = new VertexHeap(numVerts);
 		Data[] data = new Data[numVerts];
 		for (int i=0; i < numVerts; i++) {
 			// Get Neighbors
@@ -84,44 +209,39 @@ public class ShortestPath{
 			// The source is 0 distance, rest are inf.
 			int weight;
 			if (i == 0) {
-				weight = 0;
-			} else {
-				weight = Integer.MAX_VALUE;
+				queue.adjust(i, 0);
 			}
 			// Create the data node.
-			data[i] = new Data(i, weight, neighbors);
-			// Add to the queue.
-			queue.add(data[i]);
+			data[i] = new Data(i, neighbors);
 		}
 
-		Data current;
+		int min;
 		do {
 			// Get the minimum.
-			current = queue.poll();
+			min = queue.removeMin().v;
 			// System.out.printf("Iterated i:%s w:%s\n", current.index, current.weight);
 			// Is it the target? (Index i?)
-			if (current.index == 1) {
+			if (min == 1) {
 				// Done.
 				break;
 			}
 			// Mark scanned
-			current.scanned = true;
-			for (int i : current.neighbors) {
+			data[min].scanned = true;
+			for (int i : data[min].neighbors) {
 				if (data[i].scanned == false) {
-					int candidate = current.weight + G[current.index][i];
-					if (data[i].weight > candidate) {
+					int candidate = queue.getWeight(min) + G[min][i];
+					// System.out.printf("New weight is %d\n", candidate);
+					if (queue.getWeight(i) > candidate) {
 						// System.out.printf("Removing %d with weight %d\n", data[i].index, data[i].weight);
-						queue.remove(data[i]);
-						data[i].weight = candidate;
 						// System.out.printf("Adding %d with weight %d\n", data[i].index, data[i].weight);
-						queue.add(data[i]);
+						queue.adjust(i, candidate);
 					}
 				}
 			}
-		} while (current != null);
+		} while (min != 1);
 
 		/* ... End of code ... */
-		return current.weight;
+		return queue.getWeight(1);
 
 	}
 
