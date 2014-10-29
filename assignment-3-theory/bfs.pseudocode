@@ -1,0 +1,39 @@
+fn oneOrTwoWeightSearch(G: Graph, s: Vertex, d: Vertex):
+  let Q = [s] // Queue of paths
+  while Q is not empty:
+    let item = Q.dequeue() // Next to search
+    item.visited = true
+    if item = d: // What we're looking for
+      return trace(V, item)
+    end if
+    for edge in item.edges:
+      if edge.destination.visited = false:
+        if edge.weight = 2:
+          let imaginary = new Vertex
+          imaginary.imaginary = true
+          // Edge from item to imaginary
+          imaginary.edges.push(item->imaginary)
+          // Edge from imaginary to the end of the edge
+          imaginary.edges.push(imaginary->edge.destination)
+          imaginary.parent = item
+          Q.enqueue(imaginary)
+        else: // Weight 1
+          edge.destination.parent = item
+          Q.enqueue(edge.destination)
+        end if
+      end if
+    end for
+  end while
+  // d is not in G
+  return None
+end fn
+
+fn trace(item: Vertex):
+  if item.parent = null: // If it's the source
+    return [item]
+  else if item.imaginary = true:
+    return trace(item.parent) // Don't add.
+  else:
+    return trace(item.parent).enqueue(item)
+  end if
+end fn

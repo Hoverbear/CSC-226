@@ -38,3 +38,4 @@ fn SingleDestinationShortestPath(G: Graph, source: Node):
     S[P[i]] = i // Inverse direction
 
   return S
+end fn

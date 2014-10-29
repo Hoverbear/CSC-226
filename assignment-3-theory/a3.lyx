@@ -117,7 +117,47 @@ Dijksta Correctness
 \end_layout
 
 \begin_layout Standard
-We'll use the following observations:
+We'll use the following assumptions:
+\end_layout
+
+\begin_layout Itemize
+We know that Dijkstra's works on Undirected Graphs.
+ 
+\emph on
+(Ulrike explicitly said this was allowed)
+\end_layout
+
+\begin_layout Itemize
+Any directed graph 
+\begin_inset Formula $D_{a}$
+\end_inset
+
+ can be seen as a subset of the undirected graph 
+\begin_inset Formula $U_{a}$
+\end_inset
+
+.
+ This is because an undirected graph can be transformed into a directed
+ graph with each undirected edge 
+\begin_inset Formula $e_{a}$
+\end_inset
+
+ being replaced by pair of oppositely pointing directed edges 
+\begin_inset Formula $\{e_{b},e_{c}\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Dijkstra's Algorithm always pulls in the lowest cost edge into it's set
+ that doesn't connect to an already scanned node.
+ It cannot select edges from outside of the set travelling into the set,
+ only outgoing edges.
+\end_layout
+
+\begin_layout Standard
+We'll make the following observations based on this:
 \end_layout
 
 \begin_layout Itemize
@@ -150,28 +190,6 @@ Triangle Inequality: If
 \end_layout
 
 \begin_layout Itemize
-Any directed graph 
-\begin_inset Formula $D_{a}$
-\end_inset
-
- can be seen as a subset of the undirected graph 
-\begin_inset Formula $U_{a}$
-\end_inset
-
-.
- This is because an undirected graph can be transformed into a directed
- graph with each undirected edge 
-\begin_inset Formula $e_{a}$
-\end_inset
-
- being replaced by pair of oppositely pointing directed edges 
-\begin_inset Formula $\{e_{b},e_{c}\}$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Itemize
 No Cycles in Shortest Path: There are no cycles in shortest path
 \begin_inset Formula $p$
 \end_inset
@@ -185,7 +203,7 @@ No Cycles in Shortest Path: There are no cycles in shortest path
 \end_layout
 
 \begin_layout Itemize
-Since there are no cycles, 
+No Backtracking: Since there are no cycles, 
 \begin_inset Formula $p$
 \end_inset
 
@@ -210,57 +228,81 @@ Since there are no cycles,
 .
 \end_layout
 
-\begin_layout Itemize
-Dijkstra's Algorithm always pulls in the lowest cost edge into it's set
- that doesn't connect to an already scanned node.
- It cannot select edges from outside of the set travelling into the set,
- only outgoing edges.
+\begin_layout Description
+Theorem: (For a directed graph) If Dijksta's algorithm draws a vertex into
+ it's set, that the shortest path to that vertex has been found.
 \end_layout
 
 \begin_layout Description
-Theorem: Once a node joins 
-\begin_inset Formula $P$
+Proof: Contradiction.
+ Let
+\begin_inset Formula $\delta(a,k)$
 \end_inset
 
-, the 'cloud' of Dijkstra's algorithm, its label is the shortest label it
- shall obtain.
-\end_layout
-
-\begin_layout Subsubsection*
-Proof
-\end_layout
-
-\begin_layout Standard
-Base Case: When 
-\begin_inset Formula $|P|=1$
+ be the path such that such that
+\begin_inset Formula $\delta(a,b)+\delta(b,k)\leq\delta(a,c)+\delta(c,k)$
 \end_inset
 
-, the only node in 
-\begin_inset Formula $P$
+, where the vertices in
+\begin_inset Formula $\delta(a,b)$
 \end_inset
 
- is 
-\begin_inset Formula $s$
+ and 
+\begin_inset Formula $k$
 \end_inset
 
-, the source node.
- 
-\begin_inset Formula $s$
+ are already in the set, but some 
+\begin_inset Formula $c$
 \end_inset
 
- is correctly labelled it 0.
-\end_layout
-
-\begin_layout Standard
-Inductive Step: Assuming valid for 
-\begin_inset Formula $|P|=k$
+ is not.
+ This means that that 
+\begin_inset Formula $\delta(a,b)$
 \end_inset
 
-, showing for 
-\begin_inset Formula $|P|=k+1$
+ must be of less weight than 
+\begin_inset Formula $\delta(a,c)$
+\end_inset
+
+, however Dijkstra's algorithm would have selected
+\begin_inset Formula $\delta(b,k)$
+\end_inset
+
+ to pull 
+\begin_inset Formula $k$
+\end_inset
+
+ into the set instead of
+\begin_inset Formula $\delta(c,k)$
+\end_inset
+
+ only if the total distance to 
+\begin_inset Formula $k$
+\end_inset
+
+ would have been less for 
+\begin_inset Formula $\delta(a,k)$
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Description
+Theorem: Dijkstra's algorithm will not use an undirected edge more than
+ once.
+\end_layout
+
+\begin_layout Description
+Proof: Any shortest path cannot contain cycles, this also means it cannot
+ backtrack.
+ If there was a shortest path with a cycle or backtracking, it could not
+ be a shortest path, since it could be simplified.
+\end_layout
+
+\begin_layout Standard
+It follows from the above theorems, as well as the obervations, that Dijkstra's
+ Algorithm will perform correctly on Directed Graphs so long as it is only
+ permitted to select edges originating from it's set travelling outward.
 \end_layout
 
 \begin_layout Section
@@ -302,6 +344,82 @@ lstparams "breaklines=true,captionpos=b,frame=tb,numbers=left"
 Shortest Path Algorithm
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+http://stackoverflow.com/questions/20317655/modified-breadth-first-search-edge-we
+ights-2-3-or-5
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The shortest path between vertices 
+\begin_inset Formula $A,B$
+\end_inset
+
+ in a direct graph 
+\begin_inset Formula $G=\{V,E\}$
+\end_inset
+
+ with only edges of weight 1 can be determined in 
+\begin_inset Formula $O(V+E)$
+\end_inset
+
+ time using a Breadth First Search.
+ With a graph containing only edges of weights 1 and 2, it's possible to
+ maintain this behaivor by having 
+\begin_inset Quotes eld
+\end_inset
+
+imaginary
+\begin_inset Quotes erd
+\end_inset
+
+ vertices with two weight 1 edges connecting in place of the weight 2 edge.
+ Since the number of edges of weight two will always be less than 
+\begin_inset Formula $E$
+\end_inset
+
+, the algorithm maintains a 
+\begin_inset Formula $O(V+E)$
+\end_inset
+
+ time.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename bfs.svg
+	width 90text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The following pseudocode demonstrates this application.
+ Note how in the traceback the imaginary nodes are not added to any paths
+ outputted.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "bfs.pseudocode"
+lstparams "breaklines=true,captionpos=b,frame=tb,numbers=left"
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Application Areas
 \end_layout
@@ -318,9 +436,9 @@ Logistics and shipping.
 
 \begin_layout Enumerate
 Geographic Information System.
- For an application like Google Maps which produces directions between points
- A and B, Dijkstra's can be used to determine the optimal path along roads
- or other methods of transit like ferries, buses, or freeways.
+ For an application like Google Maps, which produces directions between
+ points A and B, Dijkstra's can be used to determine the optimal path along
+ roads or other methods of transit like ferries, buses, or freeways.
  In this case, edge weights do not necessarily represent the distance travelled,
  but might be weighted based on a number of factors, including traffic and
  weather warnings.
