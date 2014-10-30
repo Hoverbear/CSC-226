@@ -37,16 +37,16 @@ import java.util.Vector;
 import java.io.File;
 import java.util.ArrayList;
 
-class VertexHeapElement{
+class VertexHeapElement {
 	public static final int INVALID_WEIGHT = Integer.MAX_VALUE;
-	public int v;
-	public int weight;
+	public int v, weight;
 	public VertexHeapElement(int v){
 		this.v = v;
 		this.weight = INVALID_WEIGHT;
 	}
 }
-class VertexHeap{
+
+class VertexHeap {
 	//Array based heap using 1-based indexing.
 	public VertexHeapElement[] heap;
 
