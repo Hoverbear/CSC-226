@@ -4,7 +4,7 @@ fn oneOrTwoWeightSearch(G: Graph, s: Vertex, d: Vertex):
     let item = Q.dequeue() // Next to search
     item.visited = true
     if item = d: // What we're looking for
-      return trace(V, item)
+      return trace(item)
     end if
     for edge in item.edges:
       if edge.destination.visited = false:
