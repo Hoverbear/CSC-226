@@ -4,7 +4,13 @@ fn SingleDestinationShortestPath(G: Graph, source: Node):
   let D: [int]  // Distance from source
   let P: [Node] // Predecessors of i
   let Q: PriorityQueue<int>
+ 
+  // Reverse all the paths in the graph.
+  for each e in E:
+    swap(e.destination, e.source)
+  end for
   
+  // Do Dijkstras
   for each v in V:
     if v == source:
       dist[v] = 0
@@ -31,7 +37,10 @@ fn SingleDestinationShortestPath(G: Graph, source: Node):
       end if
     end for
   end while
+
   // P is now the Single-Source Shortest Path
+  // We already swapped the edges, so swap back
+  
   // Inverse P
   let S: [Node] // Successors of i
   for index i in P:
