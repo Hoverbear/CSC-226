@@ -327,6 +327,7 @@ Single Source Shortest Path
 \end_inset
 
  problem and reversing the determined paths.
+ Note We must first reverse each edge in the directed graph first.
 \end_layout
 
 \begin_layout Standard
