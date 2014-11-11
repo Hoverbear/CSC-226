@@ -7,7 +7,7 @@ test10:
 	java NetworkFlow tests/networks_10vertices.txt
 
 test20:
-	java NetworkFlow tests/networks_102vertices.txt
+	java NetworkFlow tests/networks_20vertices.txt
 
 test100:
 	java NetworkFlow tests/networks_100vertices.txt

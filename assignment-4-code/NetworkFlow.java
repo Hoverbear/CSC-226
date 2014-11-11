@@ -33,7 +33,8 @@
 
 import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.Stack;
+import java.util.Deque;
+import java.util.ArrayDeque;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -55,37 +56,37 @@ public class NetworkFlow{
 		/* ... Your code here ... */
 		int sink =  1;
 		int source = 0;
+		int[][] flow = new int[G.length][G.length];
 
-		Stack<Integer> path = find(G, 0, 1);
-		do {
-			assert(path != null);
-			System.out.println("---Found path");
+		Deque<Integer> path = find(G, 0, 1);
+		while (path != null) {
+			// System.out.println("---Found path size " + path);
 			int minPath = maxFlowAlongPath(G, path);
-			System.out.println("Max " + minPath);
+			// System.out.println("Max " + minPath);
 			int prev = path.pop(); // The Source.
 			while (!path.isEmpty()) {
 				int i = path.pop();
-				System.out.println("	Prev: " + prev + " Index: " + i + " Weight: " + G[prev][i] + " Back: " + G[i][prev]);
+				// System.out.println("	Prev: " + prev + " Index: " + i + " Weight: " + G[prev][i] + " Back: " + G[i][prev]);
 				G[prev][i] -= minPath;
 				G[i][prev] += minPath;
+				flow[prev][i] += minPath;
 				prev = i;
 			}
 			// Find a new Path.
 			path = find(G, 0, 1);
-		} while (path != null);
-
-		return G;
+		}
+		return flow;
 	}
 
-	static int maxFlowAlongPath(int[][] g, Stack<Integer> path) {
+	static int maxFlowAlongPath(int[][] g, Deque<Integer> path) {
 		int minCapacity = Integer.MAX_VALUE;
-		Stack<Integer> temp = new Stack<Integer>();
-		temp.addAll(path);
-		int prev = temp.pop(); // The Source
-		System.out.println("	Prev: " + prev);
+		// System.out.println("It's " + path.peekFirst());
+		Deque<Integer> temp = new ArrayDeque<Integer>(path);
+		int prev = temp.removeFirst(); // The Source
+		// System.out.println("	Prev: " + prev);
 		while (!temp.isEmpty()) {
-			int candidate = temp.pop();
-			System.out.println("	Cand: " + candidate);
+			int candidate = temp.removeFirst();
+			// System.out.println("	Cand: " + candidate);
 			if (g[prev][candidate] < minCapacity) {
 				minCapacity = g[prev][candidate];
 			}
@@ -105,7 +106,7 @@ public class NetworkFlow{
 		return links;
 	}
 
-	static Stack<Integer> find(int[][] g, int source, int destination) {
+	static Deque<Integer> find(int[][] g, int source, int destination) {
 		// Does BFS
 		int current;
 		int[] parents = new int[g.length];
@@ -128,14 +129,15 @@ public class NetworkFlow{
 			if (current == destination) {
 				// Want to "trace back" the path.
 				int step = destination;
-				Stack<Integer> path = new Stack<Integer>();
-				System.out.println("parents " + Arrays.toString(parents));
+				Deque<Integer> path = new ArrayDeque<Integer>();
+				// System.out.println("parents " + Arrays.toString(parents));
 				while (true) {
-					path.push(step); // Destination is the last item
+					// System.out.println("" + step);
+					path.addFirst(step); // Destination is the last item
 					if (step == source) { // Source is the first item
 						break;
 					} else {
-						System.out.println("Adding " + step + " Weight " + g[parents[step]][step]);
+						// System.out.println("Adding " + step + " Weight " + g[parents[step]][step]);
 						step = parents[step];
 					}
 				}
