@@ -56,29 +56,33 @@ public class NetworkFlow{
 		/* ... Your code here ... */
 		int sink =  1;
 		int source = 0;
-		int[][] flow = new int[G.length][G.length];
-
-		Deque<Integer> path = find(G, 0, 1);
+		int[][] G_f = G.clone();
+		int[][] F = new int[G.length][G.length];
+		Deque<Integer> path = find(G_f, 0, 1);
 		while (path != null) {
 			// System.out.println("---Found path size " + path);
-			int minPath = maxFlowAlongPath(G, path);
+			int minPath = minFlowOnPath(G_f, path);
 			// System.out.println("Max " + minPath);
-			int prev = path.pop(); // The Source.
+			int u = path.pop(); // The Source.
 			while (!path.isEmpty()) {
-				int i = path.pop();
-				// System.out.println("	Prev: " + prev + " Index: " + i + " Weight: " + G[prev][i] + " Back: " + G[i][prev]);
-				G[prev][i] -= minPath;
-				G[i][prev] += minPath;
-				flow[prev][i] += minPath;
-				prev = i;
+				int v = path.pop();
+				if (G_f[u][v] > 0) {
+					G_f[u][v] -= minPath;
+				} else if (G_f[v][u] > 0){
+					G[v][u] += minPath;
+				} else {
+					G_f[u][v] = 0;
+				}
+				F[u][v] += minPath;
+				u = v;
 			}
 			// Find a new Path.
 			path = find(G, 0, 1);
 		}
-		return flow;
+		return F;
 	}
 
-	static int maxFlowAlongPath(int[][] g, Deque<Integer> path) {
+	static int minFlowOnPath(int[][] g, Deque<Integer> path) {
 		int minCapacity = Integer.MAX_VALUE;
 		// System.out.println("It's " + path.peekFirst());
 		Deque<Integer> temp = new ArrayDeque<Integer>(path);

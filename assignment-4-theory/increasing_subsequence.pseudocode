@@ -1,0 +1,6 @@
+function increasing_subsequence(s: int[], t: int[]) {
+    n: int = s.length
+    m: int = t.length
+
+    for i from 1 to n
+}
