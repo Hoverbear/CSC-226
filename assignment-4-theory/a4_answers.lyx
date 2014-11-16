@@ -25,6 +25,7 @@
 \bibtex_command default
 \index_command default
 \paperfontsize default
+\spacing single
 \use_hyperref false
 \papersize default
 \use_geometry false
@@ -53,8 +54,8 @@
 \end_index
 \secnumdepth 3
 \tocdepth 3
-\paragraph_separation indent
-\paragraph_indentation default
+\paragraph_separation skip
+\defskip smallskip
 \quotes_language english
 \papercolumns 1
 \papersides 1
@@ -78,6 +79,29 @@ Andrew Hobden (V00788452)
 
 \begin_layout Section
 Dynamic Programming
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+http://www.geeksforgeeks.org/dynamic-programming-set-3-longest-increasing-subseque
+nce/
+\end_layout
+
+\begin_layout Plain Layout
+http://blog.codechef.com/2009/05/19/211/
+\end_layout
+
+\begin_layout Plain Layout
+http://comeoncodeon.wordpress.com/2010/06/01/longest-common-increasing-subsequence
+-lcis/
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -141,76 +165,144 @@ s=[4,5,6,1,2],t=[1,2,3,4,5,6,7,8,9]\rightarrow r=[4,5,6]
 
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Standard
+Defining 
+\begin_inset Formula $LCIS(s_{1}...s_{n},t_{1}...t_{m},last)$
+\end_inset
+
+ recursively:
+\end_layout
+
+\begin_layout Itemize
 If 
 \begin_inset Formula $s_{n}=t_{m}$
 \end_inset
 
+ and 
+\begin_inset Formula $s_{n}>last$
+\end_inset
+
 , then 
-\begin_inset Formula $r_{k}=s_{n}=t_{m}$
+\begin_inset Formula $LCIS=max\{LCIS(s_{1}...s_{n-1},t_{1}...t_{m-1},s_{n})+1,LCIS(s_{1}...s_{n-1},t_{1}...t_{m},last),LCIS(s_{1}...s_{n},t_{1}...t_{m-1},last)\}$
 \end_inset
 
- and 
-\begin_inset Formula $r_{1},...,r_{k-1}$
-\end_inset
 
- is an increasing subsequence of 
-\begin_inset Formula $s_{1},...,s_{n-1}$
-\end_inset
-
- and 
-\begin_inset Formula $t_{1},...,t_{m-1}$
-\end_inset
-
-.
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Itemize
 If 
 \begin_inset Formula $s_{n}\neq t_{m}$
 \end_inset
 
 , then 
-\begin_inset Formula $r_{k}\neq s_{n}$
+\begin_inset Formula $LCIS=max\{LCIS(s_{1}...s_{n-1},t_{1}...t_{m},last),LCIS(s_{1}...s_{n},t_{1}...t_{m-1},last)\}$
 \end_inset
 
- implies 
-\begin_inset Formula $r$
+
+\end_layout
+
+\begin_layout Standard
+It's possible to solve this problem using two arrays, 
+\begin_inset Formula $L$
 \end_inset
 
-is an increasing subsequence of 
-\begin_inset Formula $s_{1},...,s_{n-1}$
+ which stores the length of the LCIS ending at a given element 
+\begin_inset Formula $i$
+\end_inset
+
+, and 
+\begin_inset Formula $P$
+\end_inset
+
+ which stores the previous element of the LCIS.
+ With these it's possible to reconstruct the LCIS.
+\end_layout
+
+\begin_layout Standard
+For each element of 
+\begin_inset Formula $s$
 \end_inset
 
  and 
 \begin_inset Formula $t$
 \end_inset
 
-.
-\end_layout
-
-\begin_layout Enumerate
-If 
-\begin_inset Formula $s_{n}\neq t_{m}$
-\end_inset
-
-, then 
-\begin_inset Formula $r_{k}\neq t_{m}$
-\end_inset
-
- implies 
-\begin_inset Formula $r$
-\end_inset
-
- is an increasing subsequence of 
-\begin_inset Formula $t_{1},...,t_{m-1}$
+ at indexes 
+\begin_inset Formula $i$
 \end_inset
 
  and 
-\begin_inset Formula $s$
+\begin_inset Formula $j$
+\end_inset
+
+ respectively:
+\end_layout
+
+\begin_layout Itemize
+Initialize 
+\begin_inset Formula $cur=0$
+\end_inset
+
+, 
+\begin_inset Formula $last=-1$
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Itemize
+If 
+\begin_inset Formula $s_{i}=t_{j}$
+\end_inset
+
+ and the size of the resulting LCIS (
+\begin_inset Formula $cur+1$
+\end_inset
+
+) is larger then previous found sequences (via checking 
+\begin_inset Formula $L_{j}$
+\end_inset
+
+), then 
+\begin_inset Formula $C_{j}=cur+1$
+\end_inset
+
+, and 
+\begin_inset Formula $P_{j}=last$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+If 
+\begin_inset Formula $t_{j}<s_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $cur<C_{j}$
+\end_inset
+
+, then 
+\begin_inset Formula $cur=C_{j}$
+\end_inset
+
+ and 
+\begin_inset Formula $last=j$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "increasing_subsequence.pseudocode"
+lstparams "breaklines=true,captionpos=b,frame=tb,numbers=left"
+
+\end_inset
+
+
 \end_layout
 
 \end_body

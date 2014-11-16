@@ -1,6 +1,43 @@
 function increasing_subsequence(s: int[], t: int[]) {
-    n: int = s.length
-    m: int = t.length
+    size = max(s, t)
+    (largest, smallest) =
+        if s.len() == size
+            (s, t)
+        } else {
+            (t, s)
+        }
+    c = int[]
+    p = int[]
 
-    for i from 1 to n
+    // Build arrays
+    for i in range(0, smallest.len()) {
+        (cur, last) = (0, -1)
+        for j in range(0, largest.len()) {
+            if smallest[i] == largest[j] & cur+1 > c[j] {
+                c[j] = cur + 1
+                p[j] = last
+            }
+            if smallest[i] > largest[j] & cur < c[j] {
+                cur = c[j]
+                last = j
+            }
+        }
+    }
+
+    // Find the end of the sequence
+    (length, index) = (0, 0)
+    for i in range(0, size) {
+        if c[i] > length {
+            length = c[i]
+            index = i
+        }
+    }
+
+    // Find the sequence
+    sequence = []
+    while index != -1 {
+        seq.push_front(largest[index])
+        index = p[index]
+    }
+    return sequence
 }
