@@ -68,12 +68,11 @@ public class NetworkFlow{
 				int v = path.pop();
 				if (G_f[u][v] > 0) {
 					G_f[u][v] -= minPath;
-				} else if (G_f[v][u] > 0){
-					G[v][u] += minPath;
+					F[u][v] += minPath;
 				} else {
-					G_f[u][v] = 0;
+					G[v][u] += minPath;
+					F[v][u] -= minPath;
 				}
-				F[u][v] += minPath;
 				u = v;
 			}
 			// Find a new Path.

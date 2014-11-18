@@ -1,0 +1,30 @@
+function lcs(s: int[], t: int[]) {
+    size = max(s, t)
+    (largest, smallest) =
+        if s.len() == size
+            (s, t)
+        } else {
+            (t, s)
+        }
+    cur = int[]  // Row i
+    prev = int[] // Row i-1
+
+    // Build arrays
+    for i in range(0, smallest.len()) {
+        for j in range(0, largest.len()) {
+            if smallest[i] == largest[j] {
+                cur[j] = prev[j-i]
+            } else if prev[j] > cur[j-1]
+                cur[j] = prev[j]
+            } else {
+                cur[j] = cur[j-1]
+            }
+        }
+        // Swap them (cur will get overwritten)
+        (cur, prev) = (prev, cur)
+    }
+    // Last element is the longest subsequence.
+    // Remember, we just swapped (prev, cur)
+    // So prev[] contains the 'true' current row.
+    return prev.getLast()
+}
