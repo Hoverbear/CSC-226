@@ -1,0 +1,18 @@
+function maxFlowWithMins(G: int[][], s: int, t: int) {
+    S: int[][]
+    for vertex in G {
+        for edge in vertex {
+            S[vertex][edge] = edge.max - edge.min
+            // min of S is 0 always.
+        }
+    }
+    F = FordFulkerson(S, s, t)
+    for vertex in F {
+        for edge in vertex {
+            if F[vertex][edge] != 0 {
+                F[vertex][edge] += G[vertex][edge].min
+            }
+        }
+    }
+    return F
+}

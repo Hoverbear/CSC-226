@@ -1761,7 +1761,123 @@ lstparams "breaklines=true,captionpos=b,frame=tb,numbers=left"
 
 \end_layout
 
+\begin_layout Section
+Max Flow with Min Capacities
+\end_layout
+
 \begin_layout Standard
+Where might this variant of the Max Flow problem experience troubles? Observe
+ the following scenarios:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename min-1.png
+	width 90text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this case, it's possible to have a flow of 3 from 
+\begin_inset Formula $s\rightarrow1\rightarrow3\rightarrow t$
+\end_inset
+
+ and a flow of 3 from 
+\begin_inset Formula $s\rightarrow1\rightarrow2\rightarrow t$
+\end_inset
+
+.
+ Alone, neither of these flows satisfies the 
+\begin_inset Formula $min$
+\end_inset
+
+ restriction of 
+\begin_inset Formula $4$
+\end_inset
+
+ of 
+\begin_inset Formula $s\rightarrow1$
+\end_inset
+
+, but together, they are valid.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Min-2.png
+	width 90text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this case, it's not possible to have a flow at all, since the minmum
+ flow from 
+\begin_inset Formula $S\rightarrow1$
+\end_inset
+
+ is 5, while the maximum of 
+\begin_inset Formula $1\rightarrow T$
+\end_inset
+
+ is 
+\begin_inset Formula $4$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In order to account for these two scenarios, as well as other subproblems
+ that arise, we can 
+\emph on
+shift
+\emph default
+ the input graph's weights.
+ By making 
+\begin_inset Formula $Capacity(S_{i,j})=MaxCapacity(G_{i,j})-MinCapacity(G_{i,j})$
+\end_inset
+
+ for some
+\begin_inset Formula $S$
+\end_inset
+
+, then computing 
+\begin_inset Formula $FordFulkerson(S)$
+\end_inset
+
+ and then 
+\emph on
+unshifting
+\emph default
+ the resulting flow network 
+\begin_inset Formula $F$
+\end_inset
+
+ such that 
+\begin_inset Formula $F_{i,j}=F_{i,j}+MinCapacity(G_{i,j})$
+\end_inset
+
+ if and only if 
+\begin_inset Formula $F_{i,j}>0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "ffmin.pseudocode"
+lstparams "breaklines=true,captionpos=b,frame=tb,numbers=left"
+
+\end_inset
+
 
 \end_layout
 
