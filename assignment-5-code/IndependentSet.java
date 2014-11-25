@@ -45,40 +45,44 @@ public class IndependentSet{
 	static VertexSet MaximumIndependentSet(int[][] G){
 		int numVerts = G.length;
 		/* ... Your code here ... */
-		VertexSet best = new VertexSet(numVerts);
-		VertexSet current = new VertexSet(numVerts);
-		FindSets(best, current, G, 0);
+		VertexSet B = new VertexSet(numVerts);
+		VertexSet S = new VertexSet(numVerts);
+		VertexSet F = new VertexSet(numVerts);
+		FindSets(G, F, B, S, 0);
 		/* End of my code */
-		return null;
+		return B;
 	}
 
+	// Consider reordering vertices so you choose higher degree vertexes first.
+	// Try putting it in, then try leaving it out.
+
 	/* Scratch methods */
-	static void FindSets(VertexSet best, VertexSet current, int[][] G, int v) {
+	static void FindSets(int[][] G, VertexSet F, VertexSet B, VertexSet S, int v) {
 		int n = G.length;
 		if (v == n) {
-			if (current.getSize() > best.getSize()) {
-				best.copyFrom(current);
+			if (S.getSize() > B.getSize()) {
+				B.copyFrom(S);
 			}
 			return;
 		}
+		// Build new F_p
+		VertexSet F_p = new VertexSet(n);
+		F_p.copyFrom(F);
+		F_p.addVertex(v);
 		// Leave v out of the set
-		FindSets(best, current, G, v+1);
+		FindSets(G, F_p, B, S, v+1);
 		// Put v in the set (if possible)
-		boolean forbidden = false;
-		for (int j = 0; j < n; j++) {
-			if (G[v][j] == 1) {
-				if (current.isInSet(j)) {
-					forbidden = true;
-					break;
+		if (!F.isInSet(v)) {
+			S.addVertex(v);
+			for (int j = 0; j < n; j++) {
+				if (G[v][j] != 0) {
+					F_p.addVertex(j);
 				}
 			}
+			FindSets(G, F_p, B, S, v+1);
+			S.removeVertex(v);
 		}
-		if (!forbidden) {
-			// Put v in the set
-			current.addVertex(v);
-			FindSets(best, current, G, v+1);
-			current.removeVertex(v);
-		}
+
 	}
 	/* End Scratch methods */
 
